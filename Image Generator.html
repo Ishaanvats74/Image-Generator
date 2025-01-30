@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    *::-webkit-scrollbar{
+        display: none;  /* Hide scrollbar for WebKit browsers */
+    }
+    </style>
+
 </head>
-<body>
-    <div>
-        <div>
-            <input type="text" id="input">
-            <button onclick="getImage()"></button>
+<body class="bg-gradient-to-r from-teal-400 to-blue-500 ">
+    <div class="h-full w-full ">
+
+        <div class="flex items-center justify-center h-20 gap-5  ">
+            
+            <input type="text" id="input" class="outline-none">
+            <button onclick="getImage()" class=" border border-black shadow-2xl bg-white px-2">Search</button>
+            <button onclick="reset()" class=" border border-black shadow-2xl bg-white px-2">Reset</button>
+            
         </div>
-        <div>
-            <div id="images">
-                
-            </div>
-            <div>
-                <h1>git add</h1>
-            </div>
+        <div id="images" class="grid grid-cols-3 gap-5 items-center mx-2 ">
+            
         </div>
     </div>
 
     <script>
-
-
+        
         async function getImage(){
             let input = document.getElementById("input").value;
             const res = await fetch("https://wallpaper.acmsscbs.in/api/search?q=" + input);
@@ -32,15 +37,24 @@
 
 
             let images = document.getElementById("images");
-            for (let i=0;i<images.lenght;i++){
+            images.innerHTML = "";
+            for (let i=0;i<data.wallpaper.length;i++){
                 if(data.wallpaper[i]){
                     let img = document.createElement("img");
                     img.setAttribute("src",data.wallpaper[i].image);
+                    img.onerror = function(){
+                        this.remove();
+                    }
                     images.appendChild(img);
                 };
             };
 
         };
+
+        function reset(){
+            let images = document.getElementById("images");
+            images.innerHTML = "";
+        }
     </script>
     
 </body>
