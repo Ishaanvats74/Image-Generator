@@ -12,17 +12,19 @@
     </style>
 
 </head>
-<body class="bg-gradient-to-r from-teal-400 to-blue-500 ">
-    <div class="h-full w-full ">
+<body class="bg-gradient-to-r from-#EBF8FF-50 via-#BEE3F8-500 to-blue-500 ">
+    <div class="">
+        <div class="flex items-center justify-center ">
 
-        <div class="flex items-center justify-center h-20 gap-5  ">
-            
-            <input type="text" id="input" class="outline-none">
-            <button onclick="getImage()" class=" border border-black shadow-2xl bg-white px-2">Search</button>
-            <button onclick="reset()" class=" border border-black shadow-2xl bg-white px-2">Reset</button>
-            
+            <div class="inline-flex items-center justify-center mt-5 p-5 gap-5 rounded-xl shadow-lg bg-red-500 bg-opacity-25 hover:bg-opacity-50 ">
+                
+                <input type="text" id="input" class="outline-none opacity-75">
+                <button onclick="getImage()" class=" border-hidden shadow-2xl bg-white px-2 opacity-75">Search</button>
+                <button onclick="reset()" class=" border-hidden shadow-2xl bg-white px-2 opacity-75">Reset</button>
+                
+            </div>
         </div>
-        <div id="images" class="grid grid-cols-3 gap-5 items-center mx-2 ">
+        <div id="images" class="inline-grid grid-cols-3 gap-5 items-center mx-2 mt-14 p-3 ">
             
         </div>
     </div>
@@ -42,6 +44,7 @@
                 if(data.wallpaper[i]){
                     let img = document.createElement("img");
                     img.setAttribute("src",data.wallpaper[i].image);
+                    img.classList.add('shadow-lg','rounded-xl','');
                     img.onerror = function(){
                         this.remove();
                     }
